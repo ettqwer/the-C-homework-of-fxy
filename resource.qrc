@@ -1,0 +1,72 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>res/bg.jpg</file>
+        <file>res/2User.png</file>
+        <file>res/AddUser.png</file>
+        <file>res/Login.png</file>
+        <file>res/pass.png</file>
+        <file>res/User.png</file>
+        <file>res/Arrow - Right Square.png</file>
+        <file>res/Logout.png</file>
+        <file>res/Call.png</file>
+        <file>res/Work.png</file>
+        <file>res/ICO/Activity.png</file>
+        <file>res/ICO/AddUser.png</file>
+        <file>res/ICO/Arrow-Left2.png</file>
+        <file>res/ICO/Arrow-RightSquare.png</file>
+        <file>res/ICO/Bookmark.png</file>
+        <file>res/ICO/Buy.png</file>
+        <file>res/ICO/Calendar.png</file>
+        <file>res/ICO/CloseSquare.png</file>
+        <file>res/ICO/Delete.png</file>
+        <file>res/ICO/Discount.png</file>
+        <file>res/ICO/Edit.png</file>
+        <file>res/ICO/Filter.png</file>
+        <file>res/ICO/Game.png</file>
+        <file>res/ICO/Graph.png</file>
+        <file>res/ICO/Heart.png</file>
+        <file>res/ICO/Logout.png</file>
+        <file>res/ICO/Notification.png</file>
+        <file>res/ICO/Paper.png</file>
+        <file>res/ICO/PaperFail.png</file>
+        <file>res/ICO/PaperNegative.png</file>
+        <file>res/ICO/PaperPlus.png</file>
+        <file>res/ICO/Plus.png</file>
+        <file>res/ICO/Scan.png</file>
+        <file>res/ICO/Search.png</file>
+        <file>res/ICO/Send.png</file>
+        <file>res/ICO/Show.png</file>
+        <file>res/ICO/Show_1.png</file>
+        <file>res/ICO/Unlock.png</file>
+        <file>res/ICO/Wallet.png</file>
+        <file>res/Chart.png</file>
+        <file>res/EditSquare.png</file>
+        <file>res/Ticket.png</file>
+        <file>res/Arrow - Up Circle.png</file>
+        <file>res/Swap.png</file>
+        <file>res/ADD_GOODS_ICO/cart.png</file>
+        <file>res/ADD_GOODS_ICO/Chart.png</file>
+        <file>res/ADD_GOODS_ICO/checkmore.png</file>
+        <file>res/ADD_GOODS_ICO/edit.png</file>
+        <file>res/ADD_GOODS_ICO/EditSquare.png</file>
+        <file>res/ADD_GOODS_ICO/instruction.png</file>
+        <file>res/ADD_GOODS_ICO/layered.png</file>
+        <file>res/ADD_GOODS_ICO/menu.png</file>
+        <file>res/ADD_GOODS_ICO/shopping.png</file>
+        <file>res/ADD_GOODS_ICO/Ticket.png</file>
+        <file>res/ADD_GOODS_ICO/tanhao.png</file>
+        <file>res/ADD_GOODS_ICO/tuipiao.png</file>
+        <file>res/ADD_GOODS_ICO/xiaojuchang.png</file>
+        <file>res/ADD_GOODS_ICO/yulebao.png</file>
+        <file>res/ICO2/search.png</file>
+        <file>res/ICO2/close.png</file>
+        <file>res/ICO2/Delete.png</file>
+        <file>res/ICO2/showinformation.png</file>
+        <file>res/ICO2/edit.png</file>
+        <file>res/ICO2/clock.png</file>
+        <file>res/ICO2/Activity.png</file>
+        <file>res/ICO2/search2.png</file>
+        <file>res/ICO2/Shield Fail.png</file>
+        <file>res/ICO2/3 User.png</file>
+    </qresource>
+</RCC>

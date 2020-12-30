@@ -1,0 +1,130 @@
+#include "deleteuser.h"
+#include "ui_deleteuser.h"
+#include"finduser.h"
+DeleteUser::DeleteUser(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::DeleteUser)
+{
+    
+    this->setWindowModality(Qt::ApplicationModal);//锁定主窗口，无法在下层窗口做任何操作
+    setWindowFlags(windowFlags()& ~Qt::WindowMinMaxButtonsHint);//禁用最大化最小化按钮
+    //setWindowFlags(windowFlags()& ~Qt::WindowMaximizeButtonHint);//禁用最大化按钮
+    setWindowFlags(windowFlags()& ~Qt::WindowCloseButtonHint);//禁用关闭按钮
+    setFixedSize(this->width(), this->height());//固定窗口大小防止拖动
+    this->setAttribute(Qt::WA_DeleteOnClose,1);
+    
+    ui->setupUi(this);
+}
+
+DeleteUser::~DeleteUser()
+{
+    delete ui;
+}
+
+void DeleteUser::on_pb_back_clicked()
+{
+    this->close();
+}
+
+void DeleteUser::on_pb_SearchUser_clicked()
+{
+    FindUser * tmp = new FindUser(this);
+    tmp->show();
+}
+
+void DeleteUser::on_pb_GoDelete_clicked()
+{
+    QString DeleteData = ui->le_UserId->text();
+    bool Type = false;
+    int Namenum = FindPosVector(User_Name,DeleteData);
+    if(Namenum == -1)
+    {
+        Type = true;
+    }
+    int Numnum = FindPosVector(User_Number,DeleteData);
+    if(Type)
+    {
+        QString tips = "用户名:  "+User_Name[Numnum]+"\n"+"密码:   "+User_password[Numnum]+"\n"+"工号:   "+User_Number[Numnum]+"\n"+"联系方式: "+(User_Phone[Numnum]=="None"?"无":User_Phone[Numnum])+"\n";
+        if(User_Number[Numnum] == User_Number_Now)
+        {
+            QMessageBox::information(this,"权限不足","\n您无法删除您当前正在使用的账号\n","返回");
+            return;
+        }
+        int ret = QMessageBox::critical(this,"高危操作二次确认","您是否确定删除此账号，此操作不可撤销与更改\n\n"+tips,"确认","取消");
+        if(!ret)
+        {
+            User.erase(User.begin()+Numnum);
+            User_Name.erase(User_Name.begin()+Numnum);
+            User_Phone.erase(User_Phone.begin()+Numnum);
+            User_Sudo.erase(User_Sudo.begin()+Numnum);
+            User_password.erase(User_password.begin()+Numnum);
+            User_Number.erase(User_Number.begin()+Numnum);
+            User_Sort_Now = FindPosVector(User_Number,User_Number_Now);
+            this->WriteToUserFile();
+            QMessageBox::information(this,"成功","\n您已经删除此账号，此操作不可撤销与更改\n","确定");
+            ui->le_UserId->setText("");
+            return;
+        }
+        else
+        {
+            return;
+        }
+    }
+    else
+    {
+        QString tips = "用户名:  "+User_Name[Namenum]+"\n"+"密码:   "+User_password[Namenum]+"\n"+"工号:   "+User_Number[Namenum]+"\n"+"联系方式: "+(User_Phone[Namenum]=="None"?"无":User_Phone[Namenum])+"\n";
+        if(User_Number[Namenum] == User_Number_Now)
+        {
+            QMessageBox::information(this,"权限不足","\n您无法删除您当前正在使用的账号\n","返回");
+            return;
+        }
+        int ret = QMessageBox::critical(this,"高危操作二次确认","您是否确定删除此账号，此操作不可撤销与更改\n\n"+tips,"确认","取消");
+        if(!ret)
+        {
+            User.erase(User.begin()+Namenum);
+            User_Name.erase(User_Name.begin()+Namenum);
+            User_Phone.erase(User_Phone.begin()+Namenum);
+            User_Sudo.erase(User_Sudo.begin()+Namenum);
+            User_password.erase(User_password.begin()+Namenum);
+            User_Number.erase(User_Number.begin()+Namenum);
+            User_Sort_Now = FindPosVector(User_Number,User_Number_Now);
+            this->WriteToUserFile();
+            QMessageBox::information(this,"成功","\n您已经删除此账号，此操作不可撤销与更改\n","确定");
+            ui->le_UserId->setText("");
+            return;
+        }
+        else
+        {
+            return;
+        }
+    }
+}
+
+int DeleteUser::FindPosVector(std::vector <QString> input , QString number)
+{
+    std::vector<QString>::iterator iter=std::find(input.begin(),input.end(),number);//返回的是一个迭代器指针
+    if(iter == input.end())
+    {
+        return -1;
+    } else{
+        return std::distance(input.begin(),iter);
+    }
+}
+
+void DeleteUser::WriteToUserFile()
+{
+    QFile file("User.ilfxy");
+    if(! file.open(QIODevice::WriteOnly|QIODevice::Text))
+    {
+        QMessageBox::critical(this,"严重错误","文件打开失败，信息未写入，请与开发者联系","确认");
+        return;
+    }
+    QTextStream out(&file);
+    for(int i = 0;i < (int)User.size();i++)
+    {
+        if(i)
+            out<<"\n";
+        out<<User[i];
+    }
+    file.close();
+}
